@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Members Only!
+# Private Events
 A Rails app that behaves similar to Eventbrite, putting in practice the main concepts of Associations in rails. 
 
 ## Built With
