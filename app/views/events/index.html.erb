@@ -1,8 +1,11 @@
+<%= link_to new_event_path, class: "navbar-item" do %>  
+  <h3 class="title is-5">Create new event</h3>
+<% end %>
 <h1>Current Events:</h1>
 <ul>
   <% @events.each do |event| %>
     <li>
-      <%= event.date %>
+      <%= event.event_date %>
     </li>
   <% end %>
 </ul>

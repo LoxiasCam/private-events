@@ -3,16 +3,18 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-  end
-
-  def new
     @event = Event.new
+  end
+ 
+  def new
+    @event = current_user.events.build
   end
 
   def create
     @event = current_user.events.build(event_params)
+    
     if @event.save
-      redirect_to @event, notice: "Your event was created"
+      redirect_to root_path, notice: "Your event was created"
     else
       render :new
     end
