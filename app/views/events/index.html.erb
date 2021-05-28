@@ -5,7 +5,21 @@
 <ul>
   <% @events.each do |event| %>
     <li>
+      <%= event.event_name %>
+    </li>
+    <li>
       <%= event.event_date %>
     </li>
+  <% end %>
+</ul>
+
+<br/>
+
+<h1>My events:</h1>
+<p><%= current_user.email%></p>
+<p><%= @event.user_id%></p>
+<ul>
+  <% @events.each do |event| %>
+    <%= link_to event.event_name, events_path(event)%>
   <% end %>
 </ul>
