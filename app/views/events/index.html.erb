@@ -1,25 +1,57 @@
 <%= link_to new_event_path, class: "navbar-item" do %>  
   <h3 class="title is-5">Create new event</h3>
 <% end %>
+
+
+
 <h1>Current Events:</h1>
 <ul>
   <% @events.each do |event| %>
     <li>
-      <%= event.event_name %>
+      <%= link_to event.event_name, event_path(event)%>
     </li>
     <li>
       <%= event.event_date %>
+    </li>
+    <li>
+      <%= event.user_id %>
     </li>
   <% end %>
 </ul>
 
 <br/>
 
-<h1>My events:</h1>
-<p><%= current_user.email%></p>
-<p><%= @event.user_id%></p>
+  <% if user_signed_in? %>
+              
+              <p class="control"> 
+
+                <%= link_to current_user.email, edit_user_registration_path, class: "button is-danger" %>
+              </p>
+
+              <p class="control">
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-danger" %>
+              </p>
+
+              <% else %>
+
+              <p class="control"> 
+                <%= link_to "Log In", new_user_session_path, class: "button is-danger" %>
+              </p>
+
+              <p class="control"> 
+                <%= link_to "Sign Up", new_user_registration_path, class: "button is-danger" %>
+              </p>
+
+            <% end %>
+
+<h1>Current Users:</h1>
 <ul>
-  <% @events.each do |event| %>
-    <%= link_to event.event_name, events_path(event)%>
-  <% end %>
+  <%# @users.each do |user| %>
+    <li>
+      <%# link_to event.event_name, event_path(event)%>
+    </li>
+    <li>
+      <%# user.email %>
+    </li>
+  <%# end %>
 </ul>
