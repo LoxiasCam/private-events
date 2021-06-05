@@ -21,22 +21,7 @@
 
   <% if user_signed_in? %>
 
-    <h1>Current Users events:</h1>
-    <ul>
-      <% @events.each do |event| %>
-        <% if current_user.id == event.user_id %>
-        <li>
-          <%= link_to event.event_name, event_path(event)%>
-        </li>
-        <li>
-          <%= event.event_date %>
-        </li>
-        <li>
-          <%= event.creator.email %>
-        </li>
-        <% end %>
-      <% end %>
-    </ul>
+    <%= link_to "Users list", user_path(current_user) %>
               
     <p class="control"> 
 

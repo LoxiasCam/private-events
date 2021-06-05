@@ -1,0 +1,19 @@
+<h1>Current Users events:</h1>
+    <ul>
+      <% @events.each do |event| %>
+        <% if current_user.id == event.user_id %>
+        <li>
+          <%= link_to event.event_name, event_path(event)%>
+        </li>
+        <li>
+          <%= event.event_date %>
+        </li>
+        <li>
+          <%= event.creator.email %>
+        </li>
+        <li>
+          <%= event.creator.id %>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>
