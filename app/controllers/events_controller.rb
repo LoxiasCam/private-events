@@ -8,11 +8,11 @@ class EventsController < ApplicationController
   end
  
   def new
-    @event = current_user.events.build
+    @event = Event.new
   end
 
   def create
-    @event = current_user.events.build(event_params)
+    @event = Event.new(event_params)
     
     if @event.save
       redirect_to root_path, notice: "Your event was created"
@@ -28,6 +28,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:event_name, :event_date)
+    params.require(:event).permit(:event_name, :event_date, :user_id)
   end
 end
