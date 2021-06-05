@@ -1,3 +1,5 @@
 <h2>Event created:</h2>
 
 <%= @event.event_name %>
+<%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+<%= link_to "Back", root_path %>

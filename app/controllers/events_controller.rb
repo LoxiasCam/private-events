@@ -13,11 +13,20 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @creator = @event.build_creator(id: current_user.id, email: current_user.email)
     
     if @event.save
       redirect_to root_path, notice: "Your event was created"
     else
       render :new
+    end
+  end
+
+  def destroy
+    @event.destroy
+    respond_to do |format|
+      format.html { redirect_to user_url, notice: "Event was successfully destroyed." }
+      format.json { head :no_content }
     end
   end
 
