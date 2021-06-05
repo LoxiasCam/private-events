@@ -2,8 +2,6 @@
   <h3 class="title is-5">Create new event</h3>
 <% end %>
 
-
-
 <h1>Current Events:</h1>
 <ul>
   <% @events.each do |event| %>
@@ -23,7 +21,6 @@
 
   <% if user_signed_in? %>
 
-    <%# if current_user.id == event.user_id%>
     <h1>Current Users events:</h1>
     <ul>
       <% @events.each do |event| %>
@@ -40,7 +37,6 @@
         <% end %>
       <% end %>
     </ul>
-    <%# end %>
               
     <p class="control"> 
 
@@ -62,16 +58,3 @@
     </p>
 
   <% end %>
-
-
-
-<ul>
-  <%# @users.each do |user| %>
-    <li>
-      <%# link_to @event.event_name, event_path(@event)%>
-    </li>
-    <li>
-      <%# user.email %>
-    </li>
-  <%# end %>
-</ul>
