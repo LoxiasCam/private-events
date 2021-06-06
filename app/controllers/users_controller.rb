@@ -5,5 +5,6 @@ class UsersController < ApplicationController
   
   def show
     @events = Event.all
+    @events_attendees = EventAttendee.all
   end
 end

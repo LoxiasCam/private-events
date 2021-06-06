@@ -19,3 +19,30 @@
     </ul>
 
     <%= link_to "Back", root_path %>
+
+
+<h3>Current attended events:</h3>
+
+<ul>
+      <% @events_attendees.each do |event_attendee| %>
+        <% if current_user.id == event_attendee.event_attendee_id %>
+        <li>
+          <%= event_attendee.event_attendee_id %>
+        </li>
+        <li>
+          <%= event_attendee.attended_event_id %>
+        </li>
+        <li>
+          <%= event_attendee.attended_event.id %>
+        </li>
+        <li>
+          <%# link_to event_attendee.event.event_name, event_path(event_attendee)%>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+<h4>Past events list</h4>
+
+<h4>future events list</h4>
+    
