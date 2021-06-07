@@ -39,5 +39,3 @@ class EventAttendeesController < ApplicationController
     params.require(:event_attendee).permit(:attended_event_id, :event_attendee_id)
   end
 end
-
-end
