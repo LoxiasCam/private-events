@@ -1,9 +1,10 @@
 <%= form_with model: @event_attendee, local: true do |f| %>
   <div class="form-group">
-    <%= f.number_field :attended_event_id, id: :event_user_id, value: current_user.id, class: "form-control", type: :hidden %>
+    <%= f.number_field :attended_event_id, value: @event.id, class: "form-control" %>
   </div>
+
   <div class="form-group">
-    <%= f.number_field :event_attendee_id, id: :event_user_id, value: current_user.id, class: "form-control", type: :hidden %>
+    <%= f.number_field :event_attendee_id, value: current_user.id, class: "form-control" %>
   </div>
   <%= f.submit class: "button" %>
 <% end %>
