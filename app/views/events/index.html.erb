@@ -1,9 +1,3 @@
-<%= link_to new_event_path, class: "navbar-item" do %>  
-  <h3 class="title is-5">Create new event</h3>
-<% end %>
-
-<%= link_to "attendeed index page", event_attendees_path %>
-
 <h1>Current Events:</h1>
 <ul>
   <% @events.each do |event| %>
@@ -23,35 +17,10 @@
       <%= event.id %>
     </li>
     <li>
-      <% @id = event.id %>
-      <%= render 'event_attendees/form' %>
+      <% if user_signed_in? %>
+        <% @id = event.id %>
+        <%= render 'event_attendees/form' %>
+      <% end %>
     </li>
   <% end %>
 </ul>
-
-<br/>
-
-  <% if user_signed_in? %>
-
-    <%= link_to "Users list", user_path(current_user) %>
-              
-    <p class="control"> 
-
-      <%= link_to current_user.email, edit_user_registration_path, class: "button is-danger" %>
-    </p>
-
-    <p class="control">
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-danger" %>
-    </p>
-
-  <% else %>
-
-    <p class="control"> 
-      <%= link_to "Log In", new_user_session_path, class: "button is-danger" %>
-    </p>
-
-    <p class="control"> 
-      <%= link_to "Sign Up", new_user_registration_path, class: "button is-danger" %>
-    </p>
-
-  <% end %>
