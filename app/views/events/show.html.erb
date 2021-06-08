@@ -1,23 +1,19 @@
 <h1 class="text-primary py-2">Event Info</h1>
 
 <div class="card my-2">
-  <h5 class="card-header"><%= @event.event_name %></h5>
+  <h5 class="card-header text-secondary"><strong>Event: </strong><%= @event.event_name %></h5>
   <div class="card-body">
-    <h5 class="card-title"><%= @event.event_date %></h5>
-    <p class="card-text"><%= @event.id %></p>
+    <h5 class="card-title text-secondary"><strong>Date: </strong><%= @event.event_date %></h5>
+    <p class="card-text text-secondary">Text information of event</p>
     <% if user_signed_in? %>
       <% @id = @event.id %>
       <%= render 'event_attendees/form' %>
     <% end %>
   </div>
   <div  class="card-footer">
-    <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+    <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
     <%= link_to "Back", root_path, class:"btn btn-dark" %>
   </div>
 </div>
-
-
-
-
 
 <h2 class="text-primary py-2">List of attendees to this event:</h2>

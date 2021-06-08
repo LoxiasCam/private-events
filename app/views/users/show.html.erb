@@ -1,52 +1,44 @@
-<h1>Current Users events:</h1>
-    <ul>
-      <% @events.each do |event| %>
-        <% @id = event.id %>
-        <% if current_user.id == event.user_id %>
-        <li>
-          <%= link_to event.event_name, event_path(event)%>
-        </li>
-        <li>
+<h1 class="text-primary py-2">My Events:</h1>
+
+  <% @events.each do |event| %>
+    <% if current_user.id == event.user_id %>
+      <div class="card my-2">
+        <div class="card-header">
           <%= event.event_date %>
-        </li>
-        <li>
-          <%= event.creator.email %>
-        </li>
-        <li>
-          <%= event.creator.id %>
-        </li>
-        <li>
-          <%= render 'event_attendees/form' %>
-        </li>       
-        <% end %>
-      <% end %>
-    </ul>
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p><%= link_to event.event_name, event_path(event)%></p>         
+            <footer class="blockquote-footer"><p>Event information</p></footer>
+          </blockquote>
+          <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 
-    <%= link_to "Back", root_path %>
+<h3 class="text-primary py-2">Current attended events:</h3>
 
+<div class="container bg-light my-2 py-2">
+<ul class="list-group">
+  <% @events_attendees.each do |event_attendee| %>
+    <% if current_user.id == event_attendee.event_attendee_id %>
 
-<h3>Current attended events:</h3>
-
-<ul>
-      <% @events_attendees.each do |event_attendee| %>
-        <% if current_user.id == event_attendee.event_attendee_id %>
-        <li>
-          <%= event_attendee.event_attendee_id %>
-        </li>
-        <li>
+      <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action list-group-item-secondary">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold"><%= event_attendee.event_attendee_id %></div>
           <%= event_attendee.attended_event_id %>
-        </li>
-        <li>
-          <%= event_attendee.attended_event.id %>
-        </li>
-        <li>
-          <%# link_to event_attendee.event.event_name, event_path(event_attendee)%>
-        </li>
-        <% end %>
-      <% end %>
-    </ul>
+        </div>
+        <%= link_to "Unnattend", root_path, class:"btn btn-primary btn-small" %>
+      </li>
 
-<h4>Past events list</h4>
+    <% end %>
+  <% end %>
+</ul>
+</div>
 
-<h4>future events list</h4>
+<h4 class="text-primary py-2">Past events list</h4>
+
+<h4 class="text-primary py-2">future events list</h4>
     
+<%= link_to "Back", root_path, class:"btn btn-dark" %>
