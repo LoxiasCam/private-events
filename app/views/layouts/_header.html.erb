@@ -1,14 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Private Events</a>
+    <%= link_to "Private Events", root_path, class:"navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-
+        <%= link_to "Home", root_path, class:"nav-link" %>
         <% if user_signed_in? %>
           <%= link_to "My Events List", user_path(current_user), class: "nav-link" %>
           <%= link_to "My Attendees Events", event_attendees_path, class: "nav-link" %>
