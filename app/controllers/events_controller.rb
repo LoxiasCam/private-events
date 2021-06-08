@@ -12,6 +12,12 @@ class EventsController < ApplicationController
  
   def new
     @event = Event.new
+    @event_attendee = EventAttendee.new
+  end
+
+  def show
+    @event_attendees = EventAttendee.all
+    @event_attendee = EventAttendee.new
   end
 
   def create

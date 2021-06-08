@@ -1,6 +1,7 @@
 <h1>Current Users events:</h1>
     <ul>
       <% @events.each do |event| %>
+        <% @id = event.id %>
         <% if current_user.id == event.user_id %>
         <li>
           <%= link_to event.event_name, event_path(event)%>
@@ -14,6 +15,9 @@
         <li>
           <%= event.creator.id %>
         </li>
+        <li>
+          <%= render 'event_attendees/form' %>
+        </li>       
         <% end %>
       <% end %>
     </ul>

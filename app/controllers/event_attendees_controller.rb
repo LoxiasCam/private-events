@@ -1,13 +1,21 @@
 class EventAttendeesController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+
+  def index
+    @event_attendees = EventAttendee.all
+    @event_attendee = EventAttendee.new
+  end
+
   def new
     @event_attendee = EventAttendee.new
+
   end
 
   def create
     @event_attendee = EventAttendee.new(event_attendee_params)
+
     if @event_attendee.save
-      redirect_to root_path
+      redirect_to root_path, notice: "You are attending this event"
     else
       render :new
     end

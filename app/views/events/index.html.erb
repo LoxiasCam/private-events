@@ -22,6 +22,10 @@
     <li>
       <%= event.id %>
     </li>
+    <li>
+      <% @id = event.id %>
+      <%= render 'event_attendees/form' %>
+    </li>
   <% end %>
 </ul>
 
