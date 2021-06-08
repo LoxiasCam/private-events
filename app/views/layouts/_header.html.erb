@@ -12,7 +12,7 @@
         <% if user_signed_in? %>
           <%= link_to "My Events List", user_path(current_user), class: "nav-link" %>
           <%= link_to "My Attendees Events", event_attendees_path, class: "nav-link" %>
-          <%= link_to "New Event", new_event_path, class: "nav-link" %>    
+          <%= link_to "New Event", new_event_path, class: " btn btn-primary" %>    
         <% end %>
       
       </div>
