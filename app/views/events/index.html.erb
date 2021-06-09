@@ -1,5 +1,28 @@
-<h1 class="text-primary py-2">Current Events:</h1>
-  <% @events.each do |event| %>
+<h1 class="text-primary py-2">Upcoming Events:</h1>
+  <% @events.order(:event_date).where("event_date > ?", Date.today).each do |event| %>
+    <div class="card my-2">
+      <div class="card-header">
+        <%= event.event_date %>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p><%= link_to event.event_name, event_path(event)%></p>         
+          <footer class="blockquote-footer"><cite title="Source Title"><%= event.creator.email %></cite></footer>
+        </blockquote>
+      </div>
+
+      <div  class="card-footer">
+        <% if user_signed_in? %>
+          <% @id = event.id %>
+          <%= render 'event_attendees/form' %>
+        <% end %>
+      </div> 
+    </div>
+  <% end %>
+
+  <h2 class="text-primary py-2">Past Events:</h2>
+
+<% @events.order(:event_date).where("event_date < ?", Date.today).each do |event| %>
     <div class="card my-2">
       <div class="card-header">
         <%= event.event_date %>

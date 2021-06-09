@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event_attendee = EventAttendee.new
+    #@event = current_user.events.build
   end
 
   def show
@@ -23,7 +24,9 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params) 
+    #@event = current_user.events.build(event_params)
     @creator = @event.build_creator(id: current_user.id, email: current_user.email)
+    #@creator = @event.build_creator(event_params)
     
     if @event.save
       redirect_to root_path, notice: "Your event was created"

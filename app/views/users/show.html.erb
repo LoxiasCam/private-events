@@ -1,6 +1,6 @@
 <h1 class="text-primary py-2">My Events:</h1>
 
-  <% @events.each do |event| %>
+  <% @events.order(:event_date).each do |event| %>
     <% if current_user.id == event.user_id %>
       <div class="card my-2">
         <div class="card-header">
@@ -17,11 +17,30 @@
     <% end %>
   <% end %>
 
-<h3 class="text-primary py-2">Current attended events:</h3>
+<h3 class="text-primary py-2">Events to attend:</h3>
+
+<h4 class="text-primary py-2">Uncoming events</h4>
 
 <div class="container bg-light my-2 py-2">
 <ul class="list-group">
-  <% current_user.attended_event.distinct.find_each do | attendee | %>
+  <% current_user.attended_event.distinct.where("event_date > ?", Date.today).find_each do | attendee | %>
+
+      <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action list-group-item-secondary">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold"><%= attendee.event_name %></div>
+          <%= attendee.event_date %>
+        </div>
+      </li>
+
+  <% end %>
+</ul>
+</div>
+
+<h4 class="text-primary py-2">Past events</h4>
+
+<div class="container bg-light my-2 py-2">
+<ul class="list-group">
+  <% current_user.attended_event.distinct.where("event_date < ?", Date.today).find_each do | attendee | %>
 
       <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action list-group-item-secondary">
         <div class="ms-2 me-auto">
@@ -31,13 +50,10 @@
         <%# link_to "Unnattend", root_path, class:"btn btn-primary btn-small" %>
       </li>
 
-    <%# end %>
   <% end %>
 </ul>
 </div>
-
-<h4 class="text-primary py-2">Past events list</h4>
-
-<h4 class="text-primary py-2">future events list</h4>
     
-<%= link_to "Back", root_path, class:"btn btn-dark" %>
+<div class="container my-2">
+  <%= link_to "Back", root_path, class:"btn btn-dark" %>
+</div>
