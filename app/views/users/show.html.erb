@@ -21,18 +21,17 @@
 
 <div class="container bg-light my-2 py-2">
 <ul class="list-group">
-  <% @events_attendees.each do |event_attendee| %>
-    <% if current_user.id == event_attendee.event_attendee_id %>
+  <% current_user.attended_event.distinct.find_each do | attendee | %>
 
       <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action list-group-item-secondary">
         <div class="ms-2 me-auto">
-          <div class="fw-bold"><%= link_to event_attendee.event_attendee_id%></div>
-          <%= event_attendee.attended_event_id %>
+          <div class="fw-bold"><%= attendee.event_name %></div>
+          <%= attendee.event_date %>
         </div>
-        <%= link_to "Unnattend", root_path, class:"btn btn-primary btn-small" %>
+        <%# link_to "Unnattend", root_path, class:"btn btn-primary btn-small" %>
       </li>
 
-    <% end %>
+    <%# end %>
   <% end %>
 </ul>
 </div>

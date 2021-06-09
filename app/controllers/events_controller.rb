@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @users = User.all
     @event_attendees = EventAttendee.all
     @event_attendee = EventAttendee.new
   end

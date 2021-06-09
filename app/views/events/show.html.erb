@@ -8,12 +8,23 @@
     <% if user_signed_in? %>
       <% @id = @event.id %>
       <%= render 'event_attendees/form' %>
-    <% end %>
   </div>
   <div  class="card-footer">
     <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
-    <%= link_to "Back", root_path, class:"btn btn-dark" %>
+    <% end %>
   </div>
 </div>
 
 <h2 class="text-primary py-2">List of attendees to this event:</h2>
+
+<ul class="list-group">
+  <% @event.attendees.distinct.find_each do |attendee| %>
+      <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action list-group-item-secondary">
+          <%= attendee.email %>
+      </li>
+  <% end %>
+</ul>
+
+<div class="container my-2">
+  <%= link_to "Back", root_path, class:"btn btn-dark" %>
+</div>
