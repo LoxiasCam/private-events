@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Event < ApplicationRecord
   has_many :event_attendees, foreign_key: :attended_event_id, dependent: :delete_all
   has_many :attendees, through: :event_attendees, source: :event_attendee

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 # rubocop:disable all
 
 class CreateEventAttendees < ActiveRecord::Migration[6.1]
