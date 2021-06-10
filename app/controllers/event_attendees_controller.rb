@@ -14,9 +14,9 @@ class EventAttendeesController < ApplicationController
 
   def create
     @event_attendee = EventAttendee.new(event_attendee_params)
-    
+
     if @event_attendee.save
-      redirect_to root_path, notice: "You are attending this event!"
+      redirect_to user_path(current_user), notice: 'You are attending this event!'
     else
       render :new
     end

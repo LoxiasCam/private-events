@@ -11,15 +11,15 @@
             <p><%= link_to event.event_name, event_path(event)%></p>         
             <footer class="blockquote-footer"><p>Event information</p></footer>
           </blockquote>
-          <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
         </div>
       </div>
     <% end %>
   <% end %>
 
-<h3 class="text-primary py-2">Events to attend:</h3>
+<h3 class="text-secondary py-2">Events to attend:</h3>
 
-<h4 class="text-primary py-2">Uncoming events</h4>
+<h4 class="text-dark py-2">Uncoming events</h4>
 
 <div class="container bg-light my-2 py-2">
 <ul class="list-group">
@@ -27,7 +27,7 @@
 
       <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action list-group-item-secondary">
         <div class="ms-2 me-auto">
-          <div class="fw-bold"><%= attendee.event_name %></div>
+          <div class="fw-bold"><%= link_to attendee.event_name, event_path(attendee) %></div>
           <%= attendee.event_date %>
         </div>
       </li>
@@ -36,7 +36,7 @@
 </ul>
 </div>
 
-<h4 class="text-primary py-2">Past events</h4>
+<h4 class="text-dark py-2">Past events</h4>
 
 <div class="container bg-light my-2 py-2">
 <ul class="list-group">
@@ -44,7 +44,7 @@
 
       <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action list-group-item-secondary">
         <div class="ms-2 me-auto">
-          <div class="fw-bold"><%= attendee.event_name %></div>
+          <div class="fw-bold"><%= link_to attendee.event_name, event_path(attendee) %></div>
           <%= attendee.event_date %>
         </div>
         <%# link_to "Unnattend", root_path, class:"btn btn-primary btn-small" %>
@@ -55,5 +55,5 @@
 </div>
     
 <div class="container my-2">
-  <%= link_to "Back", root_path, class:"btn btn-dark" %>
+  <%= link_to "Back", :back, class:"btn btn-dark" %>
 </div>

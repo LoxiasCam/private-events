@@ -10,12 +10,14 @@
       <%= render 'event_attendees/form' %>
   </div>
   <div  class="card-footer">
+    <% if current_user.id == @event.creator.id %>
     <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
+    <% end %>
     <% end %>
   </div>
 </div>
 
-<h2 class="text-primary py-2">List of attendees to this event:</h2>
+<h2 class="text-secondary py-2">List of attendees to this event:</h2>
 
 <ul class="list-group">
   <% @event.attendees.distinct.find_each do |attendee| %>

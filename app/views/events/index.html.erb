@@ -20,7 +20,7 @@
     </div>
   <% end %>
 
-  <h2 class="text-primary py-2">Past Events:</h2>
+  <h2 class="text-secondary py-2">Past Events:</h2>
 
 <% @events.order(:event_date).where("event_date < ?", Date.today).each do |event| %>
     <div class="card my-2">

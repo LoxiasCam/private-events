@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @events = Event.all
@@ -9,11 +9,11 @@ class EventsController < ApplicationController
     @event_attendees = EventAttendee.all
     @event_attendee = EventAttendee.new
   end
- 
+
   def new
     @event = Event.new
     @event_attendee = EventAttendee.new
-    #@event = current_user.events.build
+    # @event = current_user.events.build
   end
 
   def show
@@ -23,13 +23,13 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params) 
-    #@event = current_user.events.build(event_params)
+    @event = Event.new(event_params)
+    # @event = current_user.events.build(event_params)
     @creator = @event.build_creator(id: current_user.id, email: current_user.email)
-    #@creator = @event.build_creator(event_params)
-    
+    # @creator = @event.build_creator(event_params)
+
     if @event.save
-      redirect_to root_path, notice: "Your event was created"
+      redirect_to user_path(current_user), notice: 'Your event was created'
     else
       render :new
     end
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to user_url, notice: "Event was successfully destroyed." }
+      format.html { redirect_to user_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
