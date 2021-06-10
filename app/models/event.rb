@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   validates :event_date, presence: true
   validates :event_name, presence: true
 
-  scope :past, -> { order(:event_date).where('event_date > ?', Date.today) }
-  scope :upcoming, -> { order(:event_date).where('event_date < ?', Date.today) }
+  #scope :past, -> { order(:event_date).where('event_date < ?', Date.today) }
+  #scope :upcoming, -> { order(:event_date).where('event_date < ?', Date.today) }
+  scope :upcoming, -> { order(:event_date).where('event_date >= ?', Time.zone.now) }
+  scope :previous, -> { order(:event_date).where('event_date < ?',  Time.zone.now) }
 end

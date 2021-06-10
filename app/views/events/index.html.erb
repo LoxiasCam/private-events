@@ -1,5 +1,5 @@
 <h1 class="text-primary py-2">Upcoming Events:</h1>
-  <% @events.past.each do |event| %>
+  <% @events.upcoming.each do |event| %>
     <div class="card my-2">
       <div class="card-header">
         <%= event.event_date %>
@@ -22,9 +22,9 @@
     </div>
   <% end %>
 
-  <h2 class="text-secondary py-2">Past Events:</h2>
+  <h2 class="text-secondary py-3">Previous Events:</h2>
 
-<% @events.upcoming.each do |event| %>
+<% @events.previous.each do |event| %>
     <div class="card my-2">
       <div class="card-header">
         <%= event.event_date %>
