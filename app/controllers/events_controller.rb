@@ -43,13 +43,13 @@ class EventsController < ApplicationController
     end
   end
 
-  def Event.past
-    order(:event_date).where("event_date > ?", Date.today)
-  end
+  #def Event.past
+   # order(:event_date).where("event_date > ?", Date.today)
+  #end
 
-  def Event.upcoming
-    order(:event_date).where("event_date < ?", Date.today)
-  end
+  #def Event.upcoming
+   # order(:event_date).where("event_date < ?", Date.today)
+  #end
 
   private
 
