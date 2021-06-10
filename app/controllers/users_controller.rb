@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable all
+
 class UsersController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   def index
@@ -23,5 +26,4 @@ class UsersController < ApplicationController
   def set_event
     @event = Event.find_by(params[:user_id])
   end
-
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable all
+
 class CreateEventAttendees < ActiveRecord::Migration[6.1]
   def change
     create_table :event_attendees do |t|

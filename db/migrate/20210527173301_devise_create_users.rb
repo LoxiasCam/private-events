@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 class DeviseCreateUsers < ActiveRecord::Migration[6.1]
   def change

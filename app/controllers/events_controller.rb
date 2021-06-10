@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable all
+
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
@@ -43,13 +46,13 @@ class EventsController < ApplicationController
     end
   end
 
-  #def Event.past
-   # order(:event_date).where("event_date > ?", Date.today)
-  #end
+  # def Event.past
+  # order(:event_date).where("event_date > ?", Date.today)
+  # end
 
-  #def Event.upcoming
-   # order(:event_date).where("event_date < ?", Date.today)
-  #end
+  # def Event.upcoming
+  # order(:event_date).where("event_date < ?", Date.today)
+  # end
 
   private
 

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable all
+
 class EventAttendeesController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
@@ -26,3 +29,5 @@ class EventAttendeesController < ApplicationController
     params.require(:event_attendee).permit(:attended_event_id, :event_attendee_id)
   end
 end
+
+# rubocop:enable all
