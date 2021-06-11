@@ -8,6 +8,6 @@ class Event < ApplicationRecord
 
   #scope :past, -> { order(:event_date).where('event_date < ?', Date.today) }
   #scope :upcoming, -> { order(:event_date).where('event_date < ?', Date.today) }
-  scope :upcoming, -> { order(:event_date).where('event_date >= ?', Time.zone.now) }
-  scope :previous, -> { order(:event_date).where('event_date < ?',  Time.zone.now) }
+  scope :upcoming_events, -> { order(:event_date).where('event_date >= ?', Time.zone.now) }
+  scope :previous_events, -> { order(:event_date).where('event_date < ?',  Time.zone.now) }
 end

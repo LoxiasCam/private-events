@@ -6,7 +6,9 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    @event = Event.new
+    
+    @past_events = Event.previous_events
+    @upcoming_events = Event.upcoming_events
 
     @event_attendees = EventAttendee.all
     @event_attendee = EventAttendee.new
@@ -15,7 +17,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event_attendee = EventAttendee.new
-    # @event = current_user.events.build
+    
   end
 
   def show
@@ -26,7 +28,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    # @event = current_user.events.build(event_params)
+    #@event = current_user.events.build(event_params)
     @creator = @event.build_creator(id: current_user.id, email: current_user.email)
     # @creator = @event.build_creator(event_params)
 
@@ -45,13 +47,14 @@ class EventsController < ApplicationController
     end
   end
 
-  # def Event.past
-  # order(:event_date).where("event_date > ?", Date.today)
-  # end
+  
+#  def Event.upcoming_events
+#    order(:event_date).where('event_date >= ?', Time.zone.now)
+#  end
 
-  # def Event.upcoming
-  # order(:event_date).where("event_date < ?", Date.today)
-  # end
+#  def Event.previous_events
+#    order(:event_date).where('event_date < ?',  Time.zone.now)
+#  end
 
   private
 
