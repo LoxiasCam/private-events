@@ -3,12 +3,6 @@
 class EventAttendeesController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
-  def index
-    @event = Event.new
-    @event_attendees = EventAttendee.all
-    @event_attendee = EventAttendee.new
-  end
-
   def new
     @event_attendee = EventAttendee.new
     @event = Event.new
