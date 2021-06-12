@@ -2,13 +2,11 @@
 
 class UsersController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
-  
-  def index
-    @events = Event.all
-  end
 
   def show
+    #@created_events = current_user.events
     @events = Event.all
+    
     @users = User.all
     @events_attendees = EventAttendee.all
   end
