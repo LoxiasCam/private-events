@@ -4,33 +4,30 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
 
-  def index
-    @events = Event.all
-    
+  def index    
     @past_events = Event.previous_events
     @upcoming_events = Event.upcoming_events
 
-    @event_attendees = EventAttendee.all
     @event_attendee = EventAttendee.new
   end
 
   def new
-    @event = Event.new
+    @event = current_user.created_events.build
+    #@event = Event.new
     @event_attendee = EventAttendee.new
-    
   end
 
   def show
     @users = User.all
+
     @event_attendees = EventAttendee.all
     @event_attendee = EventAttendee.new
   end
 
   def create
-    @event = Event.new(event_params)
-    #@event = current_user.events.build(event_params)
+    @event = current_user.created_events.build(event_params)
+    #@event = Event.new(event_params)
     @creator = @event.build_creator(id: current_user.id, email: current_user.email)
-    # @creator = @event.build_creator(event_params)
 
     if @event.save
       redirect_to user_path(current_user), notice: 'Your event was created'

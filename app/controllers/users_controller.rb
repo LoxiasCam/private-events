@@ -2,10 +2,12 @@
 
 class UsersController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   def show
-    #@created_events = current_user.events
-    @events = Event.all
+    @created_events = current_user.created_events
+    @past_events = current_user.attended_event.previous_events
+    @upcoming_events = current_user.attended_event.upcoming_events
     
     @users = User.all
     @events_attendees = EventAttendee.all

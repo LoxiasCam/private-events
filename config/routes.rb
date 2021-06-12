@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   # get "users#show"
   devise_for :users
-  root 'events#index'
+  root to: 'events#index'
 
   resources :events
   resources :users
