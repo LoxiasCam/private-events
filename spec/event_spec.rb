@@ -1,5 +1,13 @@
 require 'rails_helper'
 
+RSpec.describe Event, type: :model do
+  describe 'Associations' do
+    it { should have_many(:event_attendees) }
+    it { should have_many(:attendees) }
+    it { should belong_to(:creator).class_name('User') }
+  end
+end
+
 RSpec.describe Event, :type => :model do
   context "with 2 or more events" do
     it "orders them in chronologically" do
