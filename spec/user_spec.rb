@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'Associations' do
-    it {is_expected.to have_many(:attended_event)}
-    it {is_expected.to have_many(:event_attendees) }
-    it {is_expected.to have_many(:created_events) }
+    it { is_expected.to have_many(:attended_event) }
+    it { is_expected.to have_many(:event_attendees) }
+    it { is_expected.to have_many(:created_events) }
   end
 end
 
