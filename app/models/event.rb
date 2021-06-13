@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Event < ApplicationRecord
   has_many :event_attendees, foreign_key: :attended_event_id, dependent: :delete_all
   has_many :attendees, through: :event_attendees, source: :event_attendee
@@ -11,5 +9,5 @@ class Event < ApplicationRecord
   # scope :past, -> { order(:event_date).where('event_date < ?', Date.today) }
   # scope :upcoming, -> { order(:event_date).where('event_date < ?', Date.today) }
   scope :upcoming_events, -> { order(:event_date).where('event_date >= ?', Time.zone.now) }
-  scope :previous_events, -> { order(:event_date).where('event_date < ?',  Time.zone.now) }
+  scope :previous_events, -> { order(:event_date).where('event_date < ?', Time.zone.now) }
 end
