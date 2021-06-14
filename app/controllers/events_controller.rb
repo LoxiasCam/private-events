@@ -17,6 +17,10 @@ class EventsController < ApplicationController
     @event_attendee = EventAttendee.new
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+  
   def show
     @users = User.all
 
@@ -44,6 +48,15 @@ class EventsController < ApplicationController
     end
   end
 
+  def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      redirect_to @event
+    else
+      render :edit
+    end
+  end
   
 #  def Event.upcoming_events
 #    order(:event_date).where('event_date >= ?', Time.zone.now)
