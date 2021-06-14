@@ -1,0 +1,32 @@
+<h1 class="text-primary py-2">Event Info</h1>
+
+<div class="card my-2">
+  <h5 class="card-header text-secondary"><strong>Event: </strong><%= @event.event_name %></h5>
+  <div class="card-body">
+    <h5 class="card-title text-secondary"><strong>Date: </strong><%= @event.event_date %></h5>
+    <p class="card-text text-secondary">Text information of event</p>
+    <% if user_signed_in? %>
+      <% @id = @event.id %>
+      <%= render 'event_attendees/form' %>
+  </div>
+  <div  class="card-footer">
+    <% if current_user.id == @event.creator.id %>
+    <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+<h2 class="text-secondary py-2">List of attendees to this event:</h2>
+
+<ul class="list-group">
+  <% @event.attendees.distinct.find_each do |attendee| %>
+      <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action list-group-item-secondary">
+          <%= attendee.email %>
+      </li>
+  <% end %>
+</ul>
+
+<div class="container my-2">
+  <%= link_to "Back", root_path, class:"btn btn-dark" %>
+</div>

@@ -31,11 +31,6 @@ A Rails app that behaves similar to Eventbrite, putting in practice the main con
 
 ## Authors
 
-#### Camilo Patino
-GitHub: [LoxiasCam](https://github.com/LoxiasCam)
-
-Twitter: [@jcamilop96](https://twitter.com/jcamilop96)
-
 #### Mar Bautista
 GitHub: [marilirulita](https://github.com/marilirulita)
 

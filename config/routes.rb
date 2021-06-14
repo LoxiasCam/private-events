@@ -1,7 +1,12 @@
-Rails.application.routes.draw do
-  devise_for :users
-  get 'events/index'
+# frozen_string_literal: true
 
-  root "events#index"
+Rails.application.routes.draw do
+  # get "users#show"
+  devise_for :users
+  root to: 'events#index'
+
+  resources :events
+  resources :users, only: [:show]
+  resources :event_attendees
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,11 @@
+<%= form_with model: @event_attendee, local: true do |f| %>
+  <div class="mb-3">
+    <%= f.number_field :attended_event_id, value: @id, class: "form-control", type: :hidden %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.number_field :event_attendee_id, value: current_user.id, class: "form-control", type: :hidden %>
+  </div>
+
+  <%= f.submit "Attend Event", class: "btn btn-primary btn-sm" %>
+<% end %>
