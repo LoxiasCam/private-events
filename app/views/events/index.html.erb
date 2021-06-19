@@ -15,9 +15,15 @@
 
       <div  class="card-footer">
         <% if user_signed_in? %>
-          <% @id = event.id %>
-          <%= render 'event_attendees/form' %>
+          <% attend = EventAttendee.find_by(attended_event: event.id, event_attendee: current_user) %>
+          <% if attend %>
+            <%= button_to('Unattend Event!', event_attendee_path(id: attend.id, attended_event: event.id), method: :delete, class: "btn btn-secondary btn-sm") %>
+          <% else %>
+            <% @id = event.id %>
+            <%= render 'event_attendees/form' %>
+          <% end %>
         <% end %>
+        
       </div> 
     </div>
   <% end %>
@@ -40,8 +46,13 @@
 
       <div  class="card-footer">
         <% if user_signed_in? %>
-          <% @id = event.id %>
-          <%= render 'event_attendees/form' %>
+          <% attend = EventAttendee.find_by(attended_event: event.id, event_attendee: current_user) %>
+          <% if attend %>
+            <%= button_to('Unattend Event!', event_attendee_path(id: attend.id, attended_event: event.id), method: :delete, class: "btn btn-secondary btn-sm") %>
+          <% else %>
+            <% @id = event.id %>
+            <%= render 'event_attendees/form' %>
+          <% end %>
         <% end %>
       </div> 
     </div>

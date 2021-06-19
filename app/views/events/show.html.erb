@@ -6,13 +6,18 @@
     <h5 class="card-title text-secondary"><strong>Date: </strong><%= @event.event_date %></h5>
     <p class="card-text text-secondary">Text information of event</p>
     <% if user_signed_in? %>
-      <% @id = @event.id %>
-      <%= render 'event_attendees/form' %>
+      <% attend = EventAttendee.find_by(attended_event: @event.id, event_attendee: current_user) %>
+      <% if attend %>
+        <%= button_to('Unattend Event!', event_attendee_path(id: attend.id, attended_event: @event.id), method: :delete, class: "btn btn-secondary btn-sm") %>
+      <% else %>
+        <% @id = @event.id %>
+        <%= render 'event_attendees/form' %>
+      <% end %>
   </div>
   <div  class="card-footer">
     <% if current_user.id == @event.creator.id %>
     <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
-    <%= link_to "Edit", edit_event_path(@event), class:"btn btn-outline-warning"  %>
+    <%= link_to "Edit", edit_event_path(@event), class:"btn btn-outline-warning" %>
     <% end %>
     <% end %>
   </div>
